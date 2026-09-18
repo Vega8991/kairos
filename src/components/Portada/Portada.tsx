@@ -29,8 +29,10 @@ export function Portada({ onEmpezar }: PortadaProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Hoy cumples 20, Carmen. Y antes de nada quiero que sepas que esto no es
-          solo una web, es un camino con tres momentos que he pensado solo para ti.
+          Hay un ciclo que vuelve a cerrarse hoy, como cada vuelta que da la
+          tierra alrededor de lo que la sostiene. Algo que empezó pequeño ya
+          ha crecido lo suficiente para merecer un nombre propio y un camino
+          propio.
         </motion.p>
 
         <motion.p
@@ -39,9 +41,10 @@ export function Portada({ onEmpezar }: PortadaProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.8 }}
         >
-          Tienes una misión: completar las tres etapas, cada una con su propia
-          clave, escondida en un lugar real. Cuando las termines, hay algo
-          esperandote al final.
+          Ese camino tiene tres tramos, como tres estaciones que la
+          naturaleza ya conocía antes de que existieran las palabras para
+          nombrarlas. En cada uno hay una clave escondida en un lugar real,
+          y al final de los tres, algo espera.
         </motion.p>
 
         <button className="boton-minimal" onClick={onEmpezar}>
