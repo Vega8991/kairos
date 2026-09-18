@@ -3,7 +3,11 @@ import { motion } from 'motion/react';
 import { Marco } from '../Marco/Marco';
 import { variantesFrame } from '../frameVariants';
 
-export function FrameFinal() {
+interface FrameFinalProps {
+  onAtras: () => void;
+}
+
+export function FrameFinal({ onAtras }: FrameFinalProps) {
   return (
     <motion.div
       key="final"
@@ -14,6 +18,10 @@ export function FrameFinal() {
       exit="sale"
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
     >
+      <button className="boton-atras" onClick={onAtras} aria-label="Volver atrás">
+        ← Volver
+      </button>
+
       <Marco>
         <motion.p
           className="linea-final"

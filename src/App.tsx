@@ -29,7 +29,7 @@ function App() {
             )
         )}
 
-        {vista === 'final' && <FrameFinal />}
+        {vista === 'final' && <FrameFinal onAtras={retroceder} />}
       </AnimatePresence>
     </div>
   );
