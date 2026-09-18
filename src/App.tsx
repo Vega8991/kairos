@@ -9,7 +9,7 @@ import { Indicador } from './components/Indicador/Indicador';
 import './App.css';
 
 function App() {
-  const { vista, avanzar } = useKairosProgreso();
+  const { vista, avanzar, retroceder } = useKairosProgreso();
 
   return (
     <div className="app-shell">
@@ -20,7 +20,12 @@ function App() {
         {etapas.map(
           (etapa) =>
             vista === etapa.id && (
-              <EtapaFrame key={etapa.id} etapa={etapa} onResuelto={avanzar} />
+              <EtapaFrame
+                key={etapa.id}
+                etapa={etapa}
+                onResuelto={avanzar}
+                onAtras={retroceder}
+              />
             )
         )}
 

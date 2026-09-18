@@ -265,3 +265,38 @@ body {
   .campo-clave { flex-direction: column; align-items: center; }
   .campo-clave input { width: 100%; }
 }
+
+.boton-atras {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: transparent;
+  border: none;
+  color: rgba(234, 230, 223, 0.7);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  z-index: 5;
+  font-family: 'Work Sans', sans-serif;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.boton-atras:hover {
+  color: #eae6df;
+  transform: translateX(-3px);
+}
+
+.texto-logrado {
+  font-size: 1rem;
+  line-height: 1.85;
+  opacity: 0.9;
+  max-width: 460px;
+  margin: 0 auto 2rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .boton-atras { top: 1rem; left: 1rem; font-size: 0.75rem; }
+  .texto-logrado { font-size: 0.9rem; }
+}

@@ -11,6 +11,7 @@ export interface Etapa {
   acento: string;
   imagenFondo: string;
   porQueEstaEtapa: string;
+  textoCompletado: string;
 }
 
 export type Vista = 'portada' | EtapaId | 'final';

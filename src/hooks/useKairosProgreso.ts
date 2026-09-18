@@ -22,14 +22,26 @@ export function useKairosProgreso() {
     return 'final';
   }, []);
 
+  const anteriorVista = useCallback((actual: Vista): Vista => {
+    if (actual === 'portada') return 'portada';
+    if (actual === 'final') return etapas[etapas.length - 1].id;
+    const idx = etapas.findIndex((e) => e.id === actual);
+    if (idx > 0) return etapas[idx - 1].id;
+    return 'portada';
+  }, []);
+
   const avanzar = useCallback(() => {
     setVista((actual) => siguienteVista(actual));
   }, [siguienteVista]);
+
+  const retroceder = useCallback(() => {
+    setVista((actual) => anteriorVista(actual));
+  }, [anteriorVista]);
 
   const reiniciar = useCallback(() => {
     localStorage.removeItem(CLAVE_STORAGE);
     setVista('portada');
   }, []);
 
-  return { vista, avanzar, reiniciar };
+  return { vista, avanzar, retroceder, reiniciar };
 }
