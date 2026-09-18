@@ -18,6 +18,12 @@ export function Portada({ onEmpezar }: PortadaProps) {
       exit="sale"
       transition={transicionFrame}
     >
+      <div
+        className="frame-fondo frame-fondo-animado"
+        style={{ backgroundImage: `url(/tierra.jpg)` }}
+      />
+      <div className="frame-degradado" />
+
       <Marco>
         <p className="kicker">Feliz cumpleaños</p>
         <h1 className="titulo-portada">KAIROS</h1>

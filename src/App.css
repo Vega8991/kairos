@@ -56,6 +56,15 @@ body {
   z-index: -3;
 }
 
+.frame-fondo-animado {
+  animation: kenBurns 26s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1.05) translate(0, 0); }
+  100% { transform: scale(1.2) translate(-1.8%, -1.2%); }
+}
+
 .frame-degradado {
   position: absolute;
   inset: 0;
@@ -83,12 +92,13 @@ body {
   max-width: 620px;
   width: 100%;
   max-height: 94dvh;
+  margin: 0 auto;
   overflow-y: auto;
   overflow-x: hidden;
   padding: clamp(1.8rem, 6vw, 4rem) clamp(1.25rem, 6vw, 3rem);
   border: 1px solid rgba(234, 230, 223, 0.25);
   text-align: center;
-  background: rgba(6, 6, 6, 0.28);
+  background: rgba(6, 6, 6, 0.32);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   scrollbar-width: none;
