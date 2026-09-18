@@ -15,7 +15,6 @@ interface EtapaFrameProps {
 export function EtapaFrame({ etapa, onResuelto, onAtras }: EtapaFrameProps) {
   const [intento, setIntento] = useState('');
   const [error, setError] = useState(false);
-  const [mostrarPorQue, setMostrarPorQue] = useState(false);
   const [superada, setSuperada] = useState(false);
 
   const verificar = () => {
@@ -71,32 +70,11 @@ export function EtapaFrame({ etapa, onResuelto, onAtras }: EtapaFrameProps) {
 
               <p className="frase-etapa">{etapa.frase}</p>
 
-              <button
-                className="enlace-porque"
-                onClick={() => setMostrarPorQue((v) => !v)}
-              >
-                {mostrarPorQue ? 'Ocultar' : '¿Por qué esta etapa?'}
-              </button>
-
-              <AnimatePresence>
-                {mostrarPorQue && (
-                  <motion.p
-                    className="texto-personal"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {etapa.porQueEstaEtapa}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-
               <motion.div
                 className="campo-clave"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.7 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
               >
                 <input
                   type="text"
