@@ -9,6 +9,8 @@ export interface Etapa {
   frase: string;
   palabraClave: string;
   acento: string;
+  imagenFondo: string;
+  porQueEstaEtapa: string;
 }
 
 export type Vista = 'portada' | EtapaId | 'final';
