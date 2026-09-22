@@ -1,0 +1,352 @@
+/* src/estilos/ui.css — estructura: app, fondo, cabecera, pantalla. */
+
+.app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--noche);
+}
+
+/* ---------- Fondo ---------- */
+
+.fondo,
+.fondo-capa {
+  position: absolute;
+  inset: 0;
+}
+
+.fondo {
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none; /* el dedo nunca "toca" la foto */
+}
+
+.fondo-imagen {
+  position: absolute;
+  inset: -8%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(7px) saturate(1.05) brightness(0.78);
+  animation: respirar 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes respirar {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.16) translate(-1.5%, -1%); }
+}
+
+.fondo-cielo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--cielo) 0%, transparent 60%);
+}
+
+.fondo-sombra {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 6, 6, 0.3) 0%,
+    rgba(6, 6, 6, 0.5) 45%,
+    rgba(6, 6, 6, 0.88) 100%
+  );
+}
+
+/* ---------- Cielo nocturno (final) ---------- */
+
+.cielo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #070a1c 0%,
+    #111635 32%,
+    #1d1c3f 55%,
+    #3a2238 72%,
+    #1a0f14 84%,
+    #070506 100%
+  );
+}
+
+.cielo-nebulosa {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.cielo-nebulosa-a {
+  width: 90vw;
+  height: 50vh;
+  top: 4%;
+  left: -30%;
+  background: radial-gradient(closest-side, rgba(90, 169, 163, 0.5), rgba(90, 90, 180, 0.18) 55%, transparent);
+  animation: derivar 38s ease-in-out infinite alternate;
+}
+
+.cielo-nebulosa-b {
+  width: 80vw;
+  height: 40vh;
+  top: 28%;
+  right: -30%;
+  background: radial-gradient(closest-side, rgba(208, 138, 82, 0.42), rgba(160, 80, 140, 0.2) 55%, transparent);
+  animation: derivar 46s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes derivar {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(8%, 5%) scale(1.12); }
+}
+
+/* Vía láctea: una banda diagonal de polvo de luz */
+.cielo-via {
+  position: absolute;
+  top: -20%;
+  left: 20%;
+  width: 34%;
+  height: 110%;
+  transform: rotate(28deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(210, 205, 255, 0.06) 30%,
+    rgba(255, 240, 220, 0.12) 50%,
+    rgba(210, 205, 255, 0.06) 70%,
+    transparent
+  );
+}
+
+.cielo-estrellas {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.cielo-estrella {
+  position: absolute;
+  border-radius: 50%;
+  background: #fffaf0;
+  box-shadow: 0 0 4px rgba(255, 250, 240, 0.8);
+}
+
+.titila-0 { animation: titilar 3.2s ease-in-out infinite; }
+.titila-1 { animation: titilar 4.6s ease-in-out 1.1s infinite; }
+.titila-2 { animation: titilar 6s ease-in-out 2.3s infinite; }
+
+@keyframes titilar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.cielo-fugaz {
+  position: absolute;
+  top: 12%;
+  left: 70%;
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 250, 240, 0.9), transparent);
+  transform: rotate(-28deg);
+  opacity: 0;
+  animation: fugaz 11s ease-out 4s infinite;
+}
+
+@keyframes fugaz {
+  0% { opacity: 0; transform: rotate(-28deg) translateX(0); }
+  2% { opacity: 1; }
+  8% { opacity: 0; transform: rotate(-28deg) translateX(-240px); }
+  100% { opacity: 0; transform: rotate(-28deg) translateX(-240px); }
+}
+
+.cielo-luna {
+  position: absolute;
+  top: 45%;
+  right: 8%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #fffbf1 0%, #efe3c8 55%, #cdbd98 100%);
+  box-shadow:
+    0 0 24px 6px rgba(255, 238, 205, 0.28),
+    0 0 90px 30px rgba(255, 238, 205, 0.1);
+}
+
+/* Lo último del atardecer, detrás del árbol */
+.cielo-horizonte {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 0;
+  height: 62%;
+  background: radial-gradient(ellipse 62% 32% at 50% 68%, rgba(232, 150, 90, 0.3), transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cielo-nebulosa,
+  .cielo-estrellas,
+  .cielo-fugaz {
+    animation: none;
+  }
+}
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(var(--arriba) + 0.6rem) var(--margen) 0.6rem;
+  pointer-events: none;
+}
+
+.boton-atras {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem 0.5rem 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--tinta-suave);
+}
+
+.progreso {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  font-family: var(--serif);
+  font-size: 1rem;
+}
+
+.progreso li {
+  color: var(--tinta-tenue);
+  opacity: 0.6;
+  transition: color 0.6s ease, opacity 0.6s ease;
+}
+
+.progreso li.hecha {
+  color: var(--tinta);
+  opacity: 0.8;
+}
+
+.progreso li.actual {
+  color: var(--acento);
+  opacity: 1;
+}
+
+/* ---------- Pantalla ---------- */
+
+.pantalla {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--arriba) + 4.2rem) var(--margen) calc(var(--abajo) + 26dvh);
+  text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  pointer-events: none; /* deja pasar los toques al árbol */
+}
+
+.pantalla::-webkit-scrollbar {
+  display: none;
+}
+
+/* margin auto: centra si cabe, y si no cabe empieza arriba sin cortarse */
+.pantalla-contenido {
+  width: 100%;
+  max-width: 26rem;
+  margin-block: auto;
+}
+
+.pantalla-arriba {
+  padding-bottom: calc(var(--abajo) + 2rem);
+}
+
+.pantalla-arriba .pantalla-contenido {
+  margin-block: 0 auto;
+}
+
+.pantalla :is(button, input, textarea, form, [role='button']) {
+  pointer-events: auto;
+}
+
+/* ---------- Mantener pulsado ---------- */
+
+.capa-pulsar {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.capa-pulsar:focus-visible {
+  outline: none;
+}
+
+.barra {
+  width: 7rem;
+  height: 1px;
+  margin: 1rem auto 0;
+  background: var(--tinta-tenue);
+  overflow: hidden;
+}
+
+.barra > div {
+  height: 100%;
+  background: var(--acento);
+  transform-origin: left;
+}
+
+/* Móviles bajos (iPhone SE, mini): menos aire para que todo quepa sin scroll */
+@media (max-height: 720px) {
+  .pantalla {
+    padding-top: calc(var(--arriba) + 3.6rem);
+    padding-bottom: calc(var(--abajo) + 12dvh);
+  }
+
+  .titulo-portada { font-size: 3rem; }
+  .epigrafe { font-size: 1.02rem; margin-top: 0.7rem; }
+  .texto { font-size: 0.88rem; line-height: 1.62; margin-bottom: 0.7rem; }
+  .linea { margin: 1.1rem auto; }
+  .boton { margin-top: 1.2rem; }
+  .kicker { margin-bottom: 0.8rem; }
+  .lectura { min-height: 11rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fondo-imagen {
+    animation: none;
+  }
+}
+
+/* ---------- Modo ligero (móviles modestos) ---------- */
+
+.ligero .fondo-imagen,
+.ligero .cielo-nebulosa,
+.ligero .arbol-viento-lejos,
+.ligero .arbol-luciernaga,
+.ligero .constelacion-rayos {
+  animation: none;
+}
+
+.ligero .cielo-fugaz,
+.ligero .arbol-hoja-cae,
+.ligero .arbol-resplandor {
+  display: none;
+}
+
+/* Las luciérnagas solo parpadean, sin desplazarse */
+.ligero .arbol-luciernaga {
+  animation: parpadeo 2.8s ease-in-out infinite;
+}
