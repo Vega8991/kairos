@@ -75,10 +75,10 @@ export const etapas: Etapa[] = [
     id: 'savia',
     numero: 'III',
     parte: 'Savia',
-    titulo: 'La Sal de las Cosas',
+    titulo: 'Lo que Arde Despacio',
     frase: 'Lo que alimenta no se ve: se disuelve.',
-    lugar: 'Una cena hecha a cuatro manos',
-    proposito: 'compartir',
+    lugar: 'Una cena hecha a tres manos',
+    proposito: 'agradecer',
     sentido:
       'La savia no se ve desde fuera. Corre por dentro, de la raíz a la última hoja, y lleva a cada rama lo que necesita para seguir. Cocinar juntos es lo mismo, pero a la vista: juntar cosas que por separado no eran nada, darles tiempo y calor, y sentarse a repartir lo que ha salido. Lo que se cuece despacio es lo que dura.',
     camino: {
