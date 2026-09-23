@@ -1,6 +1,6 @@
 // src/pantallas/Final.tsx
 // La noche: la constelación del día, el árbol con fruto y la semilla.
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { etapas } from '../contenido/etapas';
 import { final } from '../contenido/textos';
@@ -28,6 +28,7 @@ function formatearFecha(iso?: string) {
 export function Final({ hojas, fecha, hojaAbierta, onAbrirHoja, onCerrarHoja }: FinalProps) {
   const [semillaAbierta, setSemillaAbierta] = useState(false);
   const [dia] = useState(() => formatearFecha(fecha));
+  const [terminado, setTerminado] = useState(false);
   const etapaAbierta = etapas.find((e) => e.id === hojaAbierta);
   const tras = 3.4; // cuando la constelación ya se ha dibujado
 
@@ -39,23 +40,23 @@ export function Final({ hojas, fecha, hojaAbierta, onAbrirHoja, onCerrarHoja }: 
 
       <Constelacion retraso={0.8} onTocar={onAbrirHoja} />
 
-      {final.lineas.map((linea, i) => (
-        <motion.p key={i} className="linea-final" {...aparecer(tras + i * 0.8)}>
-          {linea}
-        </motion.p>
-      ))}
-      <motion.p className="linea-final destacada" {...aparecer(tras + final.lineas.length * 0.8 + 0.3)}>
-        {final.destacada}
-      </motion.p>
-      <motion.p className="susurro" {...aparecer(tras + 2.2)}>
-        {final.pista}
-      </motion.p>
+      <Mensaje lineas={final.lineas} retraso={tras} onTerminado={() => setTerminado(true)} />
 
-      <motion.div className="pie" {...aparecer(tras + 2.8)}>
-        <button className="boton" onClick={() => setSemillaAbierta(true)}>
-          {final.botonSemilla}
-        </button>
-      </motion.div>
+      {terminado && (
+        <>
+          <motion.p className="linea-final destacada" {...aparecer(0)}>
+            {final.destacada}
+          </motion.p>
+          <motion.p className="susurro" {...aparecer(1)}>
+            {final.pista}
+          </motion.p>
+          <motion.div className="pie" {...aparecer(1.6)}>
+            <button className="boton" onClick={() => setSemillaAbierta(true)}>
+              {final.botonSemilla}
+            </button>
+          </motion.div>
+        </>
+      )}
 
       <AnimatePresence>
         {etapaAbierta && (
@@ -72,6 +73,52 @@ export function Final({ hojas, fecha, hojaAbierta, onAbrirHoja, onCerrarHoja }: 
         {semillaAbierta && <Semilla hojas={hojas} onCerrar={() => setSemillaAbierta(false)} />}
       </AnimatePresence>
     </Pantalla>
+  );
+}
+
+interface MensajeProps {
+  lineas: string[];
+  retraso: number;
+  onTerminado: () => void;
+}
+
+const SEGUNDOS_POR_FRASE = 7.8;
+
+/** El mensaje de despedida: una frase cada vez, que se pasa sola o al tocarla */
+function Mensaje({ lineas, retraso, onTerminado }: MensajeProps) {
+  const [i, setI] = useState(0);
+  const ultima = i === lineas.length - 1;
+
+  useEffect(() => {
+    if (ultima) {
+      onTerminado();
+      return;
+    }
+    const espera = (SEGUNDOS_POR_FRASE + (i === 0 ? retraso : 0)) * 1000;
+    const t = setTimeout(() => setI((n) => n + 1), espera);
+    return () => clearTimeout(t);
+  }, [i, ultima, retraso, onTerminado]);
+
+  return (
+    <motion.button
+      className="mensaje-final"
+      {...aparecer(retraso)}
+      onClick={() => !ultima && setI(i + 1)}
+      aria-label={ultima ? undefined : 'Siguiente frase'}
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={i}
+          className="mensaje-linea"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.9 }}
+        >
+          {lineas[i]}
+        </motion.span>
+      </AnimatePresence>
+    </motion.button>
   );
 }
 

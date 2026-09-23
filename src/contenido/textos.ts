@@ -15,8 +15,14 @@ export const portada = {
 };
 
 export const final = {
-  // Encima de estas líneas, las tres palabras del día aparecen como una constelación
-  lineas: ['Eso eres pa nosotros.'],
+  // Encima, las tres palabras del día aparecen como una constelación.
+  // Estas frases se leen una a una (se pasan solas, o tocando el texto).
+  lineas: [
+    'Un árbol no sabe cuánto ha crecido. Solo sabe que, cada año, lleva algo más dentro.',
+    'Tú has sido sombra para quien se cansó, horizonte para quien dudó y sal para quien tenía hambre de algo verdadero.',
+    'Y lo más raro es que no lo notas. Lo que más sostiene es siempre lo que menos ruido hace.',
+    'Chronos te suma un año. Kairos guarda el momento en que llegaste.',
+  ],
   destacada: 'Feliz cumpleaños',
   pista: 'Toca una estrella, o una hoja que brille.',
   botonSemilla: 'Abrir la semilla',

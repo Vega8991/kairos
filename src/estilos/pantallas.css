@@ -206,6 +206,26 @@
   margin-top: 1rem;
 }
 
+/* ---------- Mensaje de despedida ---------- */
+
+.mensaje-final {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 6.4rem;
+  margin: 0.2rem 0;
+  text-align: center;
+}
+
+.mensaje-linea {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 5.2vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--tinta);
+}
+
 /* ---------- Constelación ---------- */
 
 .inscripcion {
@@ -317,5 +337,7 @@
 @media (max-height: 720px) {
   .constelacion { max-width: 17rem; margin-bottom: 0.2rem; }
   .linea-final { font-size: 1.4rem; }
-  .linea-final.destacada { margin: 0.6rem 0 0.5rem; font-size: 1.8rem; }
+  .linea-final.destacada { margin: 0.4rem 0 0.4rem; font-size: 1.8rem; }
+  .mensaje-final { min-height: 5.6rem; }
+  .mensaje-linea { font-size: 1.15rem; }
 }

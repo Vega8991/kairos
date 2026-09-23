@@ -17,6 +17,13 @@
   --alto-arbol: 62dvh;
 }
 
+/* Móviles bajos: árbol algo más pequeño para dejar sitio al texto */
+@media (max-height: 720px) {
+  :root {
+    --alto-arbol: 52dvh;
+  }
+}
+
 *,
 *::before,
 *::after {
