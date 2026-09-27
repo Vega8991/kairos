@@ -314,23 +314,21 @@ export const FRUTOS = [0.1, 0.28, 0.46, 0.64, 0.82, 0.95].map((q, i) => {
 const masAlta = tronco.puntas.reduce((a, b) => (b.y < a.y ? b : a));
 const aGrados = (rad: number) => (rad * 180) / Math.PI;
 
-/** Dónde brota la hoja que ella escribe en cada etapa */
 export const HOJAS_PROPIAS: Record<EtapaId, { x: number; y: number; giro: number }> = {
   raiz: { x: porX[0].x, y: porX[0].y, giro: aGrados(porX[0].ang) },
   tronco: { x: porX[porX.length - 1].x, y: porX[porX.length - 1].y, giro: aGrados(porX[porX.length - 1].ang) },
   savia: { x: masAlta.x, y: masAlta.y, giro: aGrados(masAlta.ang) },
+  fruto: { x: enCuantil(porX, 0.22).x, y: enCuantil(porX, 0.22).y, giro: aGrados(enCuantil(porX, 0.22).ang) },
 };
 
 const raicesPorX = [...raices.puntas].sort((a, b) => a.x - b.x);
 
-/** Recorridos de la savia: de la punta de una raíz, por el tronco, hasta la punta de una rama */
 export const SAVIA: string[] = [0.15, 0.4, 0.62, 0.86].map((q) => {
   const abajo = [...enCuantil(raicesPorX, q).camino].reverse();
   const arriba = enCuantil(porX, q).camino;
   return [...abajo, ...arriba].map(([x, y], i) => `${i ? 'L' : 'M'}${f(x)} ${f(y)}`).join('');
 });
 
-/** Luciérnagas alrededor de la copa, solo en el final */
 const rl = azar(59);
 export const LUCIERNAGAS = Array.from({ length: 18 }, () => ({
   x: 8 + rl() * 184,

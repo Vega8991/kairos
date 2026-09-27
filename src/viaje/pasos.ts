@@ -25,7 +25,7 @@ const indiceCrecer = etapas.map((etapa) =>
   PASOS.findIndex((p) => p.tipo === 'etapa' && p.etapa.id === etapa.id && p.momento === 'crecer')
 );
 
-/** Cuántas etapas han hecho crecer ya el árbol (0 a 3) */
+/** Cuántas etapas han hecho crecer ya el árbol (0 a 4) */
 export function nivelDelArbol(desbloqueado: number): number {
   return indiceCrecer.filter((i) => i < desbloqueado).length;
 }

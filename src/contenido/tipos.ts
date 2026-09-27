@@ -1,6 +1,6 @@
 // src/contenido/tipos.ts
 
-export type EtapaId = 'raiz' | 'tronco' | 'savia';
+export type EtapaId = 'raiz' | 'tronco' | 'savia' | 'fruto';
 
 export interface Etapa {
   id: EtapaId;

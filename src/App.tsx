@@ -22,7 +22,7 @@ export default function App() {
   const [hojaAbierta, setHojaAbierta] = useState<EtapaId | null>(null);
 
   // Un solo valor mueve todo el árbol: 0 semilla, 1 raíz, 2 tronco, 3 copa, 4 fruto
-  const objetivo = paso.tipo === 'final' ? nivel + 1 : nivel;
+  const objetivo = nivel;
   const crecimiento = useMotionValue(objetivo);
 
   useEffect(() => {

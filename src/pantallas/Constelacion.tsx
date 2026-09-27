@@ -1,14 +1,15 @@
 // src/pantallas/Constelacion.tsx
-// Las tres palabras del día convertidas en estrellas que se unen en el cielo.
+// Las cuatro palabras del día convertidas en estrellas que se unen en el cielo.
 import type { CSSProperties } from 'react';
 import { motion } from 'motion/react';
 import { etapas } from '../contenido/etapas';
 import type { EtapaId } from '../contenido/tipos';
 
 const POSICION: Record<EtapaId, { x: number; y: number }> = {
-  raiz: { x: 52, y: 84 },
-  tronco: { x: 150, y: 30 },
-  savia: { x: 248, y: 80 },
+  raiz: { x: 40, y: 84 },
+  tronco: { x: 113, y: 30 },
+  savia: { x: 187, y: 82 },
+  fruto: { x: 260, y: 34 },
 };
 
 /** Estrella de cuatro puntas: rayos finos que se cierran en el centro */
